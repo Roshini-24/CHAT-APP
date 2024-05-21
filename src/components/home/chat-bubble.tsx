@@ -5,7 +5,7 @@ import DateIndicator from "./date-indicator";
 import Image from "next/image";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogDescription } from "../ui/dialog";
-//import ReactPlayer from "react-player";
+import ReactPlayer from "react-player";
 //import ChatAvatarActions from "./chat-avatar-actions";
 import { Bot } from "lucide-react";
 
@@ -30,7 +30,7 @@ const ChatBubble = ({ me, message, previousMessage }: ChatBubbleProps) => {
 	//!fromAI ? "bg-white dark:bg-gray-primary" : "bg-blue-500 text-white";
 
 	console.log(message.sender);
-	// const [open, setOpen] = useState(false);
+	 const [open, setOpen] = useState(false);
 
 	// const renderMessageContent = () => {
 	// 	switch (message.messageType) {
@@ -59,7 +59,12 @@ const ChatBubble = ({ me, message, previousMessage }: ChatBubbleProps) => {
 						{open && <ImageDialog src={message.content} open={open} onClose={() => setOpen(false)} />}
 						<MessageTime time={time} fromMe={fromMe} /> */}
 						<OtherMessageIndicator/>
-						<TextMessage message={message}/>
+
+						{message.messageType ==="text" && <TextMessage message={message}/>}
+						{message.messageType ==="image" && <ImageMessage message={message} handleClick={()=>setOpen(true)}/>}
+
+						{open && <ImageDialog src={message.content} open={open} onClose={()=>setOpen(false)} />}
+						{message.messageType ==="video" && <VideoMessage message={message}/>}
 						<MessageTime time={time} fromMe={fromMe}/>
 
 					</div>
@@ -78,7 +83,11 @@ const ChatBubble = ({ me, message, previousMessage }: ChatBubbleProps) => {
 					{/* {renderMessageContent()}
 					{open && <ImageDialog src={message.content} open={open} onClose={() => setOpen(false)} />} */}
 
-					<TextMessage message={message}/>
+						{message.messageType ==="text" && <TextMessage message={message}/>}
+						{message.messageType ==="image" && <ImageMessage message={message} handleClick={()=>setOpen(true)}/>}
+
+						{open && <ImageDialog src={message.content} open={open} onClose={()=>setOpen(false)} />}
+						{message.messageType ==="video" && <VideoMessage message={message}/>}
 					<MessageTime time={time} fromMe={fromMe} />
 				</div>
 			</div>
@@ -87,40 +96,40 @@ const ChatBubble = ({ me, message, previousMessage }: ChatBubbleProps) => {
 };
 export default ChatBubble;
 
-// const VideoMessage = ({ message }: { message: IMessage }) => {
-// 	return <ReactPlayer url={message.content} width='250px' height='250px' controls={true} light={true} />;
-// };
+const VideoMessage = ({ message }: { message: IMessage }) => {
+	return <ReactPlayer url={message.content} width='250px' height='250px' controls={true} light={true} />;
+};
 
-// const ImageMessage = ({ message, handleClick }: { message: IMessage; handleClick: () => void }) => {
-// 	return (
-// 		<div className='w-[250px] h-[250px] m-2 relative'>
-// 			<Image
-// 				src={message.content}
-// 				fill
-// 				className='cursor-pointer object-cover rounded'
-// 				alt='image'
-// 				onClick={handleClick}
-// 			/>
-// 		</div>
-// 	);
-// };
+const ImageMessage = ({ message, handleClick }: { message: IMessage; handleClick:()=>void }) => {
+	return (
+		<div className='w-[250px] h-[250px] m-2 relative'>
+			<Image
+				src={message.content}
+				fill
+				className='cursor-pointer object-cover rounded'
+				alt='image'
+				 onClick={handleClick}
+			/>
+		</div>
+	);
+};
 
-// const ImageDialog = ({ src, onClose, open }: { open: boolean; src: string; onClose: () => void }) => {
-// 	return (
-// 		<Dialog
-// 			open={open}
-// 			onOpenChange={(isOpen) => {
-// 				if (!isOpen) onClose();
-// 			}}
-// 		>
-// 			<DialogContent className='min-w-[750px]'>
-// 				<DialogDescription className='relative h-[450px] flex justify-center'>
-// 					<Image src={src} fill className='rounded-lg object-contain' alt='image' />
-// 				</DialogDescription>
-// 			</DialogContent>
-// 		</Dialog>
-// 	);
-// };
+const ImageDialog = ({ src, onClose, open }: { open: boolean; src: string; onClose: () => void }) => {
+	return (
+		<Dialog
+			open={open}
+			onOpenChange={(isOpen) => {
+				if (!isOpen) onClose();
+			}}
+		>
+			<DialogContent className='min-w-[750px]'>
+				<DialogDescription className='relative h-[450px] flex justify-center'>
+					<Image src={src} fill className='rounded-lg object-contain' alt='image' />
+				</DialogDescription>
+			</DialogContent>
+		</Dialog>
+	);
+};
 
 const MessageTime = ({ time, fromMe }: { time: string; fromMe: boolean }) => {
 	return (
