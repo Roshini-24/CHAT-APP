@@ -52,12 +52,12 @@ export const sendTextMessage = mutation({
 			});
 		}
 
-		// if (args.content.startsWith("@dall-e")) {
-		// 	await ctx.scheduler.runAfter(0, api.openai.dall_e, {
-		// 		messageBody: args.content,
-		// 		conversation: args.conversation,
-		// 	});
-		// }
+		if (args.content.startsWith("@dall-e")) {
+			await ctx.scheduler.runAfter(0, api.openai.dall_e, {
+				messageBody: args.content,
+				conversation: args.conversation,
+			});
+		}
 	},
 });
 
