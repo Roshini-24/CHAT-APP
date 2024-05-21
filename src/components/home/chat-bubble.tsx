@@ -1,7 +1,7 @@
 import { MessageSeenSvg } from "@/lib/svgs";
 import { IMessage, useConversationStore } from "@/store/chat-store";
 import ChatBubbleAvatar from "./chat-bubble-avatar";
-//import DateIndicator from "./date-indicator";
+import DateIndicator from "./date-indicator";
 import Image from "next/image";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogDescription } from "../ui/dialog";
@@ -48,7 +48,7 @@ const ChatBubble = ({ me, message, previousMessage }: ChatBubbleProps) => {
 	if (!fromMe) {
 		return (
 			<>
-    			{/* <DateIndicator message={message} previousMessage={previousMessage} /> */}
+    			<DateIndicator message={message} previousMessage={previousMessage} />
 				<div className='flex gap-1 w-2/3'>
 					<ChatBubbleAvatar isGroup={isGroup} isMember={isMember} message={message} />
 					<div className={`flex flex-col z-20 max-w-fit px-2 pt-1 rounded-md shadow-md relative ${bgClass}`}>
@@ -70,7 +70,7 @@ const ChatBubble = ({ me, message, previousMessage }: ChatBubbleProps) => {
 
 	return (
 		<>
-			{/* <DateIndicator message={message} previousMessage={previousMessage} /> */}
+			<DateIndicator message={message} previousMessage={previousMessage} />
 
 			<div className='flex gap-1 w-2/3 ml-auto'>
 				<div className={`flex  z-20 max-w-fit px-2 pt-1 rounded-md shadow-md ml-auto relative ${bgClass}`}>
