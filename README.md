@@ -1,3 +1,8 @@
+---------------------------"THE-CHAT-APP"-------------------------------
+
+A web application created for chatting with individuals and groups. Personal and Individual Video Call rooms can also be created.
+The app is also integrated with openai and Dall-e for generating results according to our request by using AI.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
