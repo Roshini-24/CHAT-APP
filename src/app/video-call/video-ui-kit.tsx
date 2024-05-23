@@ -22,8 +22,10 @@ export default function VideoUIKit() {
 			console.log(username,"this is user");
 
 			const kitToken = ZegoUIKitPrebuilt.generateKitTokenForProduction(appID, token, roomID, user?.id!, username);
+			
 
 			const zp = ZegoUIKitPrebuilt.create(kitToken);
+			console.log(zp);
 			zp.joinRoom({
 				container: element,
 				sharedLinks: [
@@ -39,7 +41,7 @@ export default function VideoUIKit() {
 					},
 				],
 				scenario: {
-					mode: ZegoUIKitPrebuilt.GroupCall, // To implement 1-on-1 calls, modify the parameter here to [ZegoUIKitPrebuilt.OneONoneCall].
+					mode: ZegoUIKitPrebuilt.GroupCall, // To implement 1-on-1 calls [ZegoUIKitPrebuilt.OneONoneCall].
 				},
 			});
 		};
