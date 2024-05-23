@@ -19,6 +19,7 @@ export default function VideoUIKit() {
 			const { token, appID } = await res.json();
 
 			const username = user?.fullName || user?.emailAddresses[0].emailAddress.split("@")[0];
+			console.log(username,"this is user");
 
 			const kitToken = ZegoUIKitPrebuilt.generateKitTokenForProduction(appID, token, roomID, user?.id!, username);
 
