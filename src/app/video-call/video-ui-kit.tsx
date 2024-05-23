@@ -41,7 +41,7 @@ export default function VideoUIKit() {
 					},
 				],
 				scenario: {
-					mode: ZegoUIKitPrebuilt.GroupCall, // To implement 1-on-1 calls [ZegoUIKitPrebuilt.OneONoneCall].
+					mode: ZegoUIKitPrebuilt.OneONoneCall, // To implement 1-on-1 calls [ZegoUIKitPrebuilt.OneONoneCall].
 				},
 			});
 		};
