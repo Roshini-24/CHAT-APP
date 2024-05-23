@@ -10,6 +10,7 @@ export function getUrlParams(url = window.location.href) {
 export default function VideoUIKit() {
 	const roomID = getUrlParams().get("roomID") || randomID(5);
 	const { user } = useClerk();
+	console.log(user);
 
 	let myMeeting = (element: HTMLDivElement) => {
 		const initMeeting = async () => {
